@@ -1,0 +1,32 @@
+# Node.js
+**/node_modules/
+**/dist/
+**/build/
+**/.env
+**/.env.*
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+
+# System Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# IDE / Editor Files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Agent Metadata
+.aionrs/
+.gemini/
+antigravity/
+brain/
+scratch/

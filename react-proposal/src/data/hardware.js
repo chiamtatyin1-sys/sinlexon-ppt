@@ -1,0 +1,98 @@
+export const components = {
+  gpu: [
+    { name: 'ASUS ROG Astral RTX 5090 OC 32GB', dealer: 15400, retail: 16999, verify: 'https://www.tmt.my/products/asus-rog-astral-geforce-rtx-5090-oc', verifyLabel: 'TMT' },
+    { name: 'Zotac RTX 5090 Solid 32GB', dealer: 10899, retail: 11999, verify: 'https://shopee.com.my/search?keyword=zotac+rtx+5090', verifyLabel: 'Shopee' },
+    { name: 'RTX PRO 6000 Blackwell 96GB', dealer: 47500, retail: null, verify: 'https://cmspg.com', verifyLabel: 'CMS' },
+  ],
+  cpu: [
+    { name: 'AMD Ryzen 9 9950X', price: 2799, verify: 'https://shopee.com.my/search?keyword=amd+ryzen+9+9950x' },
+    { name: 'AMD Threadripper 7980X', price: 24999, verify: 'https://shopee.com.my/search?keyword=threadripper+7980x' },
+  ],
+  motherboard: [
+    { name: 'ASUS ProArt X870E-CREATOR WIFI', price: 2158, verify: 'https://www.ecytech.com.my' },
+    { name: 'ASUS Pro WS TRX50 SAGE WIFI', price: 4799, verify: 'https://www.ecytech.com.my/product-page/asus-pro-ws-trx50-sage-wifi' },
+  ],
+  ram: [
+    { name: 'Kingston Fury DDR5-5600 64GB (32x2)', price: 959, verify: 'https://jayacom.my/kingston-fury-beast-black-expo-ddr5-5600mt-s-cl36-desktop-ram-dimm-64gb-32gb-x-2-kf556c36bbek2-64' },
+    { name: 'Kingston Fury DDR5-5600 128GB (32x4)', price: 1559, verify: 'https://jayacom.my' },
+    { name: 'Kingston Fury DDR5-5600 256GB (32x8)', price: 3999, verify: 'https://jayacom.my' },
+  ],
+  storage: [
+    { name: 'Samsung 990 Pro 1TB NVMe', price: 549 },
+    { name: 'Samsung 990 Pro 2TB NVMe', price: 1099 },
+    { name: 'WD Red Plus 4TB HDD', price: 450 },
+    { name: 'WD Red Plus 8TB HDD', price: 850 },
+    { name: 'WD Red Plus 12TB HDD', price: 1200 },
+  ],
+  psu: [
+    { name: 'Seasonic Focus GX 1200W', price: 749, verify: 'https://www.ecytech.com.my' },
+    { name: 'Corsair HX1500i 1500W', price: 1619, verify: 'https://www.ecytech.com.my/product-page/corsair-hx1500i-2025' },
+  ],
+  case: [
+    { name: 'Fractal Design Torrent', price: 909, verify: 'https://www.aspiration.com.my/product/fractal-design-torrent-black-tg-light-tint', hddBays: '4x 3.5" + 2x 2.5"', maxCapacity: '64TB+' },
+    { name: 'Lian Li O11 Dynamic EVO XL', price: 1159, verify: 'https://www.aspiration.com.my', hddBays: '3x 3.5" + 4x 2.5"', maxCapacity: '48TB+' },
+  ],
+  cooler: [
+    { name: 'Noctua NH-D15 (Air, Recommended)', price: 469, type: 'Air', verify: 'https://www.ecytech.com.my/product-page/noctua-nh-d15' },
+    { name: 'Noctua NH-D15 + Extra Fans', price: 499, type: 'Air' },
+    { name: 'Arctic Freezer 4U-M (Air, Server)', price: 599, type: 'Air' },
+    { name: 'Arctic Liquid Freezer III 360mm (AIO)', price: 699, type: 'AIO Liquid' },
+    { name: 'NZXT Kraken Elite 360 (AIO)', price: 899, type: 'AIO Liquid' },
+  ],
+  network: [
+    { name: 'TP-Link 2.5GbE Switch', price: 199 },
+    { name: 'TP-Link 10GbE Switch', price: 599 },
+  ],
+  distributors: [
+    { name: 'TMT', url: 'https://www.tmt.my' },
+    { name: 'E-Cytech', url: 'https://www.ecytech.com.my' },
+    { name: 'Jayacom', url: 'https://jayacom.my' },
+    { name: 'Aspiration Tech', url: 'https://www.aspiration.com.my' },
+    { name: 'CMS Distribution', url: 'https://cmspg.com' },
+    { name: 'Gadget Zone', url: 'https://gadgetzone.com.my' },
+    { name: 'Shopee Malaysia', url: 'https://shopee.com.my' },
+    { name: 'Lazada Malaysia', url: 'https://lazada.com.my' },
+  ],
+};
+
+export const tierBuilds = {
+  starter: {
+    gpu: { item: 'ASUS ROG Astral RTX 5090 OC 32GB', qty: 1, unitPrice: 15400 },
+    cpu: { item: 'AMD Ryzen 9 9950X', qty: 1, unitPrice: 2799 },
+    motherboard: { item: 'ASUS ProArt X870E-CREATOR WIFI', qty: 1, unitPrice: 2158 },
+    ram: { item: 'Kingston Fury DDR5-5600 64GB (32x2)', qty: 1, unitPrice: 959 },
+    storage: { item: 'Samsung 990 Pro 1TB NVMe', qty: 1, unitPrice: 549 },
+    psu: { item: 'Seasonic Focus GX 1200W', qty: 1, unitPrice: 749 },
+    case: { item: 'Fractal Design Torrent', qty: 1, unitPrice: 909 },
+    cooler: { item: 'Noctua NH-D15 (Air, Recommended)', qty: 1, unitPrice: 469 },
+    network: { item: 'TP-Link 2.5GbE Switch', qty: 1, unitPrice: 199 },
+    misc: 150,
+    setup: 2000,
+  },
+  performance: {
+    gpu: { item: 'ASUS ROG Astral RTX 5090 OC 32GB', qty: 2, unitPrice: 15400 },
+    cpu: { item: 'AMD Ryzen 9 9950X', qty: 1, unitPrice: 2799 },
+    motherboard: { item: 'ASUS ProArt X870E-CREATOR WIFI', qty: 1, unitPrice: 2158 },
+    ram: { item: 'Kingston Fury DDR5-5600 128GB (32x4)', qty: 1, unitPrice: 1559 },
+    storage: { item: 'Samsung 990 Pro 1TB NVMe', qty: 1, unitPrice: 549 },
+    psu: { item: 'Corsair HX1500i 1500W', qty: 1, unitPrice: 1619 },
+    case: { item: 'Fractal Design Torrent', qty: 1, unitPrice: 909 },
+    cooler: { item: 'Noctua NH-D15 + Extra Fans', qty: 1, unitPrice: 499 },
+    network: { item: 'TP-Link 2.5GbE Switch', qty: 1, unitPrice: 199 },
+    misc: 300,
+    setup: 3000,
+  },
+  enterprise: {
+    gpu: { item: 'RTX PRO 6000 Blackwell 96GB', qty: 1, unitPrice: 47500 },
+    cpu: { item: 'AMD Threadripper 7980X', qty: 1, unitPrice: 24999 },
+    motherboard: { item: 'ASUS Pro WS TRX50 SAGE WIFI', qty: 1, unitPrice: 4799 },
+    ram: { item: 'Kingston Fury DDR5-5600 256GB (32x8)', qty: 1, unitPrice: 3999 },
+    storage: { item: 'Samsung 990 Pro 1TB NVMe', qty: 1, unitPrice: 549 },
+    psu: { item: 'Seasonic Focus GX 1200W', qty: 1, unitPrice: 749 },
+    case: { item: 'Lian Li O11 Dynamic EVO XL', qty: 1, unitPrice: 1159 },
+    cooler: { item: 'Arctic Freezer 4U-M (Air, Server)', qty: 1, unitPrice: 599 },
+    network: { item: 'TP-Link 10GbE Switch', qty: 1, unitPrice: 599 },
+    misc: 500,
+    setup: 5000,
+  },
+};
