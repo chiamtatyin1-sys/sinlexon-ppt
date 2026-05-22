@@ -1,7 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
-* {
+/* ============================================================
+   DESIGN SYSTEM — HSL COLOR TOKENS
+   ============================================================ */
+:root {
+  --primary:           hsl(207, 90%, 61%);
+  --primary-glow:      hsla(207, 90%, 61%, 0.15);
+  --secondary:         hsl(145, 100%, 45%);
+  --secondary-glow:    hsla(145, 100%, 45%, 0.15);
+  --accent:            hsl(45, 100%, 50%);
+  --accent-glow:       hsla(45, 100%, 50%, 0.15);
+  --danger:            hsl(355, 100%, 60%);
+  --danger-glow:       hsla(355, 100%, 60%, 0.15);
+
+  --bg-dark:           hsl(240, 20%, 4%);
+  --bg-sidebar:        hsl(240, 20%, 6%);
+  --card-bg:           hsla(240, 15%, 8%, 0.65);
+  --border-glow:       hsla(0, 0%, 100%, 0.08);
+
+  --text-primary:      #f0f0f5;
+  --text-secondary:    #9090a0;
+  --text-muted:        #555565;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -13,64 +39,152 @@ html {
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background: #0a0a0f;
-  color: #e0e0e0;
+  background: var(--bg-dark);
+  color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
 }
 
-/* Scroll animations */
-.section-animate {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+/* ============================================================
+   KEYFRAME ANIMATIONS
+   ============================================================ */
+
+/* Primary page-level content transition */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.section-animate.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* Subtle fade only */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
+/* Sidebar slide-in */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-::-webkit-scrollbar-track {
-  background: #0a0a0f;
+/* Neon glow pulse for highlighted pricing elements */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 12px hsla(145, 100%, 45%, 0.25); }
+  50%       { box-shadow: 0 0 24px hsla(145, 100%, 45%, 0.50); }
 }
 
+/* Number counter pop */
+@keyframes popIn {
+  0%   { transform: scale(0.88); opacity: 0; }
+  60%  { transform: scale(1.04); }
+  100% { transform: scale(1);    opacity: 1; }
+}
+
+/* ============================================================
+   ANIMATION UTILITY CLASSES
+   ============================================================ */
+.animate-fade-in-up {
+  animation: fadeInUp 0.40s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.30s ease-out both;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 2.2s ease-in-out infinite;
+}
+
+.animate-pop-in {
+  animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ============================================================
+   TAG / BADGE UTILITIES  (ported from prototype)
+   ============================================================ */
+.tag {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 6px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.tag-b { background: var(--primary-glow);   color: var(--primary);   }
+.tag-g { background: var(--secondary-glow); color: var(--secondary); }
+.tag-y { background: var(--accent-glow);    color: var(--accent);    }
+.tag-r { background: var(--danger-glow);    color: var(--danger);    }
+
+/* ============================================================
+   CUSTOM SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
 ::-webkit-scrollbar-thumb {
   background: #1e3a5f;
   border-radius: 3px;
 }
+::-webkit-scrollbar-thumb:hover { background: var(--primary); }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #64b5f6;
-}
-
-/* Gradient text utility */
+/* ============================================================
+   GRADIENT TEXT UTILITY
+   ============================================================ */
 .gradient-text {
-  background: linear-gradient(135deg, #64b5f6, #00e676);
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Card hover effect */
+/* ============================================================
+   CARD HOVER (generic)
+   ============================================================ */
 .card-hover {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
-
 .card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
-/* Print styles */
+/* ============================================================
+   SECTION SCROLL ANIMATIONS  (progressive enhancement)
+   ============================================================ */
+.section-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.section-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
 @media print {
-  nav { display: none !important; }
-  .scroll-hint { display: none !important; }
-  section { page-break-inside: avoid; padding: 40px 20px !important; }
+  .wiki-sidebar { display: none !important; }
+  .mobile-header { display: none !important; }
+  main { margin-left: 0 !important; }
+  section { page-break-inside: avoid; }
   body { background: white; color: black; }
 }
