@@ -13,21 +13,19 @@
     <style>
         :root {
             --cyan: #64b5f6;
-            --cyan-glow: rgba(100, 181, 246, 0.25);
             --green: #00e676;
-            --green-glow: rgba(0, 230, 118, 0.2);
             --yellow: #ffd740;
-            --yellow-glow: rgba(255, 215, 64, 0.2);
             --red: #ff5252;
-            --red-glow: rgba(255, 82, 82, 0.2);
             --purple: #b388ff;
             --bg-deep: #060810;
             --glass: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.08);
             --glass-strong: rgba(255, 255, 255, 0.06);
+            --text-main: #d8dde8;
+            --text-muted: #8a9bb5;
+            --text-dim: #5a6a80;
         }
 
-        /* ===== BASE RESET ===== */
         * { box-sizing: border-box; }
 
         body {
@@ -36,7 +34,7 @@
             overflow: hidden;
         }
 
-        /* ===== AMBIENT BACKGROUND ===== */
+        /* Ambient background glow */
         body::before {
             content: '';
             position: fixed;
@@ -49,15 +47,15 @@
             z-index: 0;
         }
 
-        /* ===== REVEAL OVERRIDES ===== */
+        /* ===== REVEAL CORE ===== */
         .reveal {
             font-family: 'Inter', system-ui, sans-serif !important;
-            color: #e0e0e0;
+            color: var(--text-main);
+            font-size: 28px;
         }
 
         .reveal .progress { background: rgba(255,255,255,0.05); }
         .reveal .progress span { background: linear-gradient(90deg, var(--cyan), var(--green)); }
-
         .reveal .controls { color: var(--cyan); }
 
         .reveal .slide-number {
@@ -65,14 +63,14 @@
             border: 1px solid var(--glass-border);
             border-radius: 6px;
             font-family: 'Outfit', sans-serif;
-            font-size: 11px;
+            font-size: 14px;
             color: #666;
-            padding: 4px 8px;
+            padding: 4px 10px;
         }
 
         .reveal .slides section {
             text-align: left;
-            padding: 32px 36px;
+            padding: 40px 48px;
             background: rgba(8, 10, 20, 0.72);
             border-radius: 20px;
             border: 1px solid var(--glass-border);
@@ -85,69 +83,62 @@
             overflow: hidden;
         }
 
-        /* Vertical (down) deep-dive slides have a slightly more tinted background */
         .reveal .slides section.deep-dive {
-            background: rgba(5, 8, 18, 0.82);
+            background: rgba(5, 8, 18, 0.85);
             border-color: rgba(100, 181, 246, 0.12);
-            box-shadow:
-                0 25px 80px rgba(0, 0, 0, 0.7),
-                0 0 80px rgba(100, 181, 246, 0.06);
         }
 
-        /* ===== TYPOGRAPHY ===== */
+        /* ===== TYPOGRAPHY — LARGE & READABLE ===== */
         .deck-label {
             font-family: 'Outfit', sans-serif;
-            font-size: 0.62em;
+            font-size: 16px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 3px;
             color: var(--cyan);
-            margin-bottom: 10px !important;
+            margin-bottom: 12px !important;
             display: flex;
             align-items: center;
             gap: 10px;
-            opacity: 0.9;
         }
-
-        .deck-label i { font-size: 0.9em; }
 
         .deck-title {
             font-family: 'Outfit', sans-serif;
             font-weight: 800;
-            font-size: 1.75em !important;
+            font-size: 42px !important;
             line-height: 1.15;
-            margin-bottom: 22px !important;
+            margin-bottom: 20px !important;
             color: #ffffff;
         }
 
         .deck-title .hi {
-            background: linear-gradient(135deg, var(--cyan) 0%, var(--green) 100%);
+            background: linear-gradient(135deg, var(--cyan), var(--green));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .deck-title .hi-yellow {
-            background: linear-gradient(135deg, var(--yellow) 0%, #ff9800 100%);
+            background: linear-gradient(135deg, var(--yellow), #ff9800);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .deck-sub {
-            font-size: 0.58em;
-            color: #8a9bb5;
-            margin-top: -14px;
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-top: -10px;
             margin-bottom: 20px !important;
             line-height: 1.5;
         }
 
-        /* ===== NAVIGATION HINT (for deep-dive slides) ===== */
+        /* ===== NAV HINT ===== */
         .nav-hint {
             position: absolute;
             bottom: 14px;
-            right: 20px;
-            font-size: 0.4em;
+            right: 24px;
+            font-size: 13px;
             color: #3a4a60;
             display: flex;
             align-items: center;
@@ -159,66 +150,62 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 20px;
-            font-size: 0.48em;
+            font-size: 14px;
             font-weight: 700;
             font-family: 'Outfit', sans-serif;
-            letter-spacing: 0.5px;
         }
         .badge-cyan { background: rgba(100,181,246,0.12); color: var(--cyan); border: 1px solid rgba(100,181,246,0.25); }
         .badge-green { background: rgba(0,230,118,0.12); color: var(--green); border: 1px solid rgba(0,230,118,0.25); }
         .badge-yellow { background: rgba(255,215,64,0.12); color: var(--yellow); border: 1px solid rgba(255,215,64,0.25); }
         .badge-red { background: rgba(255,82,82,0.12); color: var(--red); border: 1px solid rgba(255,82,82,0.25); }
-        .badge-purple { background: rgba(179,136,255,0.12); color: var(--purple); border: 1px solid rgba(179,136,255,0.25); }
 
         /* ===== GLASS CARDS ===== */
         .g-card {
             background: var(--glass);
             border: 1px solid var(--glass-border);
             border-radius: 14px;
-            padding: 18px 20px;
-            transition: border-color 0.3s, box-shadow 0.3s;
+            padding: 22px 24px;
+            transition: border-color 0.3s;
         }
-
-        .g-card.accent-cyan { border-color: rgba(100,181,246,0.18); }
-        .g-card.accent-green { border-color: rgba(0,230,118,0.18); box-shadow: 0 0 20px rgba(0,230,118,0.05); }
-        .g-card.accent-yellow { border-color: rgba(255,215,64,0.18); }
-        .g-card.accent-red { border-color: rgba(255,82,82,0.18); }
+        .g-card.accent-cyan { border-color: rgba(100,181,246,0.2); }
+        .g-card.accent-green { border-color: rgba(0,230,118,0.2); }
+        .g-card.accent-yellow { border-color: rgba(255,215,64,0.2); }
+        .g-card.accent-red { border-color: rgba(255,82,82,0.2); }
 
         .g-card h4 {
             font-family: 'Outfit', sans-serif;
-            font-size: 0.82em !important;
+            font-size: 20px !important;
             font-weight: 700 !important;
             color: #fff;
             margin-bottom: 8px !important;
         }
 
-        .g-card p {
-            font-size: 0.52em !important;
-            color: #8a9bb5;
-            line-height: 1.5;
+        .g-card p, .g-card .card-text {
+            font-size: 16px !important;
+            color: var(--text-muted);
+            line-height: 1.55;
             margin: 0;
         }
 
-        .g-card i {
-            font-size: 1.6em;
-            margin-bottom: 10px;
+        .g-card i.card-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
             display: block;
         }
 
         /* ===== GRIDS ===== */
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 14px; }
-        .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin-top: 14px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 16px; }
 
         /* ===== COMPARISON TABLE ===== */
         .cmp-table {
             width: 100%;
             border-collapse: separate;
             border-spacing: 0 6px;
-            font-size: 0.46em !important;
-            margin-top: 14px;
+            font-size: 16px;
+            margin-top: 16px;
         }
 
         .cmp-table th {
@@ -229,7 +216,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-family: 'Outfit', sans-serif;
-            font-size: 0.9em;
+            font-size: 13px;
         }
 
         .cmp-table td {
@@ -237,17 +224,12 @@
             background: rgba(255,255,255,0.02);
             vertical-align: middle;
             color: #ccc;
+            font-size: 15px;
             border-top: 1px solid rgba(255,255,255,0.03);
-        }
-
-        .cmp-table tr.win td {
-            background: rgba(0,230,118,0.04);
-            border-top: 1px solid rgba(0,230,118,0.08);
         }
 
         .cmp-table td:first-child { color: #ddd; font-weight: 600; }
 
-        /* ===== WINNER CELL ===== */
         .win-cell {
             border: 1px solid rgba(0,230,118,0.2) !important;
             border-radius: 8px;
@@ -258,9 +240,9 @@
             display: inline-block;
             background: var(--green);
             color: #000;
-            font-size: 0.7em;
+            font-size: 11px;
             font-weight: 800;
-            padding: 1px 7px;
+            padding: 2px 8px;
             border-radius: 4px;
             margin-bottom: 3px;
             font-family: 'Outfit', sans-serif;
@@ -268,7 +250,7 @@
 
         .price-big {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.3em;
+            font-size: 22px;
             font-weight: 900;
             display: block;
             color: #fff;
@@ -277,16 +259,16 @@
         /* ===== HIGHLIGHT BOXES ===== */
         .hl-box {
             border-radius: 12px;
-            padding: 14px 18px;
+            padding: 16px 20px;
             margin-top: 14px;
-            font-size: 0.52em;
+            font-size: 16px;
+            line-height: 1.55;
         }
 
         .hl-green { background: rgba(0,230,118,0.06); border: 1px solid rgba(0,230,118,0.2); color: #88ccaa; }
         .hl-yellow { background: rgba(255,215,64,0.06); border: 1px solid rgba(255,215,64,0.2); color: #ccaa66; }
         .hl-cyan { background: rgba(100,181,246,0.06); border: 1px solid rgba(100,181,246,0.2); color: #8ab8d8; }
         .hl-red { background: rgba(255,82,82,0.06); border: 1px solid rgba(255,82,82,0.2); color: #cc8888; }
-
         .hl-box strong { color: #fff; }
 
         /* ===== STAT PILLS ===== */
@@ -295,18 +277,18 @@
             background: var(--glass-strong);
             border: 1px solid var(--glass-border);
             border-radius: 10px;
-            padding: 12px 18px;
+            padding: 16px 20px;
             text-align: center;
             flex: 1;
-            min-width: 80px;
+            min-width: 100px;
         }
         .stat-pill .num {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.3em;
+            font-size: 28px;
             font-weight: 900;
             display: block;
         }
-        .stat-pill .lbl { font-size: 0.42em; color: #6a7f9a; margin-top: 2px; display: block; }
+        .stat-pill .lbl { font-size: 13px; color: #6a7f9a; margin-top: 4px; display: block; }
         .c { color: var(--cyan); }
         .g { color: var(--green); }
         .y { color: var(--yellow); }
@@ -316,15 +298,15 @@
         /* ===== BULLET LIST ===== */
         .blist { list-style: none; margin: 0; padding: 0; }
         .blist li {
-            font-size: 0.58em !important;
-            color: #b0bec5;
-            margin-bottom: 10px;
+            font-size: 17px !important;
+            color: #b8c5d5;
+            margin-bottom: 12px;
             display: flex;
             align-items: flex-start;
             gap: 10px;
-            line-height: 1.4;
+            line-height: 1.5;
         }
-        .blist li i { flex-shrink: 0; margin-top: 2px; font-size: 1em; }
+        .blist li i { flex-shrink: 0; margin-top: 3px; font-size: 16px; }
 
         /* ===== TIMELINE ===== */
         .timeline {
@@ -332,18 +314,18 @@
             justify-content: space-between;
             align-items: flex-start;
             position: relative;
-            margin-top: 24px;
+            margin-top: 28px;
             padding-bottom: 8px;
         }
 
         .timeline::after {
             content: '';
             position: absolute;
-            top: 24px;
+            top: 28px;
             left: 4%;
             right: 4%;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(100,181,246,0.3), rgba(0,230,118,0.3), rgba(255,215,64,0.2), rgba(255,255,255,0.05));
+            height: 2px;
+            background: linear-gradient(90deg, rgba(0,230,118,0.4), rgba(100,181,246,0.4), rgba(255,215,64,0.3), rgba(179,136,255,0.2));
             z-index: 1;
         }
 
@@ -355,62 +337,42 @@
         }
 
         .tl-dot {
-            width: 48px;
-            height: 48px;
+            width: 54px;
+            height: 54px;
             border-radius: 50%;
             background: #0a0e1a;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 12px;
+            margin: 0 auto 14px;
             font-family: 'Outfit', sans-serif;
             font-weight: 800;
-            font-size: 0.85em;
-            transition: all 0.3s;
+            font-size: 18px;
         }
 
-        .tl-step.s1 .tl-dot { border: 2px solid var(--green); color: var(--green); box-shadow: 0 0 16px rgba(0,230,118,0.35); }
-        .tl-step.s2 .tl-dot { border: 2px solid var(--cyan); color: var(--cyan); box-shadow: 0 0 16px rgba(100,181,246,0.35); }
-        .tl-step.s3 .tl-dot { border: 2px solid var(--yellow); color: var(--yellow); box-shadow: 0 0 16px rgba(255,215,64,0.25); }
-        .tl-step.s4 .tl-dot { border: 2px solid var(--purple); color: var(--purple); box-shadow: 0 0 16px rgba(179,136,255,0.25); }
+        .tl-step.s1 .tl-dot { border: 2px solid var(--green); color: var(--green); box-shadow: 0 0 18px rgba(0,230,118,0.35); }
+        .tl-step.s2 .tl-dot { border: 2px solid var(--cyan); color: var(--cyan); box-shadow: 0 0 18px rgba(100,181,246,0.35); }
+        .tl-step.s3 .tl-dot { border: 2px solid var(--yellow); color: var(--yellow); box-shadow: 0 0 18px rgba(255,215,64,0.25); }
+        .tl-step.s4 .tl-dot { border: 2px solid var(--purple); color: var(--purple); box-shadow: 0 0 18px rgba(179,136,255,0.25); }
 
         .tl-step h5 {
             font-family: 'Outfit', sans-serif;
-            font-size: 0.65em !important;
+            font-size: 17px !important;
             font-weight: 700 !important;
             color: #fff;
-            margin-bottom: 5px !important;
+            margin-bottom: 6px !important;
         }
 
-        .tl-step p { font-size: 0.43em !important; color: #6a7f9a; line-height: 1.3; }
+        .tl-step p { font-size: 13px !important; color: #6a7f9a; line-height: 1.4; }
+
+        /* ===== ACCENT LINES ===== */
+        .accent-line-cyan { width: 48px; height: 3px; background: linear-gradient(90deg, var(--cyan), transparent); border-radius: 2px; margin-bottom: 14px; }
+        .accent-line-green { width: 48px; height: 3px; background: linear-gradient(90deg, var(--green), transparent); border-radius: 2px; margin-bottom: 14px; }
 
         /* ===== SEPARATOR ===== */
-        .sep { height: 1px; background: linear-gradient(90deg, transparent, var(--glass-border), transparent); margin: 16px 0; }
+        .sep { height: 1px; background: linear-gradient(90deg, transparent, var(--glass-border), transparent); margin: 14px 0; }
 
-        /* ===== TITLE SLIDE SPECIAL ===== */
-        .title-glow {
-            position: absolute;
-            top: -80px;
-            left: -80px;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(100,181,246,0.08) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .title-glow-2 {
-            position: absolute;
-            bottom: -100px;
-            right: -80px;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(0,230,118,0.06) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        /* ===== DEEP DIVE LABELS ===== */
+        /* ===== DIVE LABEL ===== */
         .dive-label {
             display: inline-flex;
             align-items: center;
@@ -418,29 +380,43 @@
             background: rgba(100,181,246,0.08);
             border: 1px solid rgba(100,181,246,0.2);
             border-radius: 6px;
-            padding: 3px 10px;
-            font-size: 0.42em;
+            padding: 4px 12px;
+            font-size: 12px;
             color: var(--cyan);
             font-family: 'Outfit', sans-serif;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        /* ===== GLOW DECORATIONS ===== */
+        .title-glow {
+            position: absolute;
+            top: -80px; left: -80px;
+            width: 500px; height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(100,181,246,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .title-glow-2 {
+            position: absolute;
+            bottom: -100px; right: -80px;
+            width: 400px; height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,230,118,0.06) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         /* ===== BOM TABLE ===== */
-        .bom-table { width: 100%; border-collapse: collapse; font-size: 0.43em !important; margin-top: 14px; }
-        .bom-table th { padding: 8px 12px; background: rgba(255,255,255,0.04); color: #6a7f9a; font-weight: 700; text-transform: uppercase; font-size: 0.85em; border-bottom: 1px solid rgba(255,255,255,0.06); text-align: left; }
+        .bom-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 14px; }
+        .bom-table th { padding: 8px 12px; background: rgba(255,255,255,0.04); color: #6a7f9a; font-weight: 700; text-transform: uppercase; font-size: 12px; border-bottom: 1px solid rgba(255,255,255,0.06); text-align: left; }
         .bom-table td { padding: 7px 12px; border-bottom: 1px solid rgba(255,255,255,0.03); color: #b0bec5; vertical-align: top; }
         .bom-table td:first-child { color: #ddd; font-weight: 600; white-space: nowrap; }
         .bom-table tr.total td { background: rgba(100,181,246,0.05); border-top: 1px solid rgba(100,181,246,0.15); color: var(--cyan); font-weight: 700; }
 
-        /* ===== NEON ACCENT LINES ===== */
-        .accent-line-cyan { width: 48px; height: 3px; background: linear-gradient(90deg, var(--cyan), transparent); border-radius: 2px; margin-bottom: 14px; }
-        .accent-line-green { width: 48px; height: 3px; background: linear-gradient(90deg, var(--green), transparent); border-radius: 2px; margin-bottom: 14px; }
-
-        /* ===== REVEAL FRAGMENT TRANSITIONS ===== */
+        /* ===== FRAGMENT TRANSITIONS ===== */
         .reveal .fragment { opacity: 0; transition: opacity 0.4s ease, transform 0.4s ease; transform: translateY(8px); }
         .reveal .fragment.visible { opacity: 1; transform: translateY(0); }
 
-        /* ===== SCROLLABLE CONTENT ===== */
+        /* ===== SCROLLABLE ===== */
         .scrollable { max-height: 55vh; overflow-y: auto; padding-right: 6px; }
         .scrollable::-webkit-scrollbar { width: 3px; }
         .scrollable::-webkit-scrollbar-track { background: transparent; }
@@ -451,66 +427,59 @@
 <div class="reveal">
 <div class="slides">
 
-<!-- ══════════════════════════════════════════════════════════
-     COLUMN 1 — TITLE
-══════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════ COLUMN 1 — TITLE ═══════════════════ -->
 <section>
-    <!-- Slide 1A: Main Title -->
+    <!-- 1A: Main Title -->
     <section data-background-image="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1920" data-background-opacity="0.15">
         <div class="title-glow"></div>
         <div class="title-glow-2"></div>
-        <div style="padding: 10px 0;">
-            <div class="deck-label"><i class="fas fa-server"></i> Sovereign AI Infrastructure · May 2026</div>
-            <h1 style="font-family:'Outfit',sans-serif; font-size:2.2em !important; font-weight:900; line-height:1.1; color:#fff; margin-bottom:16px !important;">
-                Private <span style="background:linear-gradient(135deg,#64b5f6,#00e676);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">AI Servers</span><br>
-                for Your Business
-            </h1>
-            <p style="font-size:0.65em; color:#8a9bb5; max-width:620px; line-height:1.6; margin-bottom:28px;">
-                A Board &amp; Investor Proposal for <strong style="color:#ddd;">Sinlexon Sdn Bhd</strong> — Own your AI infrastructure, secure your data, and build a high-margin sovereign AI business.
-            </p>
-            <div style="display:flex; gap:14px; flex-wrap:wrap; margin-bottom:30px;">
-                <span class="badge badge-cyan"><i class="fas fa-shield-alt"></i> 100% PDPA Compliant</span>
-                <span class="badge badge-green"><i class="fas fa-wind"></i> 100% Air-Cooled</span>
-                <span class="badge badge-yellow"><i class="fas fa-chart-line"></i> Asset-Backed ROI</span>
-            </div>
-            <div style="display:flex; gap:24px; flex-wrap:wrap;">
-                <div style="font-size:0.52em;"><span style="color:#64b5f6; font-weight:800; font-family:'Outfit',sans-serif; font-size:1.3em;">RM30k</span><br><span style="color:#555;">Starter</span></div>
-                <div style="font-size:0.52em;"><span style="color:#00e676; font-weight:800; font-family:'Outfit',sans-serif; font-size:1.3em;">RM50k</span><br><span style="color:#555;">Performance</span></div>
-                <div style="font-size:0.52em;"><span style="color:#ffd740; font-weight:800; font-family:'Outfit',sans-serif; font-size:1.3em;">RM100k</span><br><span style="color:#555;">Enterprise</span></div>
-            </div>
-            <div class="nav-hint"><i class="fas fa-chevron-down"></i> Press ↓ for Executive Summary</div>
+        <div class="deck-label"><i class="fas fa-server"></i> Sovereign AI Infrastructure · May 2026</div>
+        <h1 style="font-family:'Outfit',sans-serif; font-size:52px !important; font-weight:900; line-height:1.1; color:#fff; margin-bottom:16px !important;">
+            Private <span style="background:linear-gradient(135deg,#64b5f6,#00e676);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">AI Servers</span><br>
+            for Your Business
+        </h1>
+        <p style="font-size:20px; color:var(--text-muted); max-width:620px; line-height:1.6; margin-bottom:28px;">
+            A Board &amp; Investor Proposal for <strong style="color:#ddd;">Sinlexon Sdn Bhd</strong> — Own your AI, secure your data, build a high-margin sovereign AI business.
+        </p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:28px;">
+            <span class="badge badge-cyan"><i class="fas fa-shield-alt"></i> 100% PDPA Compliant</span>
+            <span class="badge badge-green"><i class="fas fa-wind"></i> 100% Air-Cooled</span>
+            <span class="badge badge-yellow"><i class="fas fa-chart-line"></i> Asset-Backed ROI</span>
         </div>
+        <div style="display:flex; gap:32px; flex-wrap:wrap;">
+            <div><span style="color:#64b5f6; font-weight:800; font-family:'Outfit',sans-serif; font-size:28px;">RM30k</span><br><span style="color:#555; font-size:15px;">Starter</span></div>
+            <div><span style="color:#00e676; font-weight:800; font-family:'Outfit',sans-serif; font-size:28px;">RM50k</span><br><span style="color:#555; font-size:15px;">Performance</span></div>
+            <div><span style="color:#ffd740; font-weight:800; font-family:'Outfit',sans-serif; font-size:28px;">RM100k</span><br><span style="color:#555; font-size:15px;">Enterprise</span></div>
+        </div>
+        <div class="nav-hint"><i class="fas fa-chevron-down"></i> Press ↓ for Executive Summary</div>
     </section>
 
-    <!-- Slide 1B: Executive Summary (Deep-Dive) -->
+    <!-- 1B: Executive Summary -->
     <section class="deep-dive">
         <div class="dive-label"><i class="fas fa-file-alt"></i> EXECUTIVE SUMMARY</div>
-        <div class="deck-label"><i class="fas fa-bullseye"></i> Strategic Overview</div>
-        <h2 class="deck-title">The <span class="hi">Sinlexon</span> AI Infrastructure Opportunity</h2>
+        <h2 class="deck-title">The <span class="hi">Sinlexon</span> Opportunity</h2>
         <div class="grid-2">
             <div>
-                <div class="accent-line-cyan"></div>
                 <ul class="blist">
-                    <li><i class="fas fa-check-circle g"></i> <strong>Immediate Cost Savings</strong>: Replace RM1,500–RM5,000/mo cloud API subscriptions with a one-time capital asset purchase (break-even in 4–12 months).</li>
-                    <li><i class="fas fa-check-circle g"></i> <strong>Data Sovereignty</strong>: 100% local inference — no data ever sent to US/foreign servers, full PDPA compliance for client-sensitive industries.</li>
-                    <li><i class="fas fa-check-circle g"></i> <strong>Asset-Backed Investment</strong>: All hardware is resaleable enterprise equipment with 3-year local manufacturer warranty — unlike software subscriptions that become worthless.</li>
-                    <li><i class="fas fa-check-circle g"></i> <strong>SaaS Revenue Potential</strong>: Resell AI seats to Malaysian businesses (law firms, clinics, GLCs) for RM1,500–RM5,000/mo per client. 10 clients = RM600k/yr gross revenue.</li>
+                    <li><i class="fas fa-check-circle g"></i> <strong>Immediate Cost Savings</strong> — Replace RM1.5k–5k/mo cloud API with one-time asset purchase. Break-even in 4–12 months.</li>
+                    <li><i class="fas fa-check-circle g"></i> <strong>Data Sovereignty</strong> — 100% local inference, no data ever leaves Malaysia. Full PDPA compliance.</li>
+                    <li><i class="fas fa-check-circle g"></i> <strong>Asset-Backed Investment</strong> — Enterprise GPUs retain resale value. 3-year warranty. Not a disposable subscription.</li>
+                    <li><i class="fas fa-check-circle g"></i> <strong>SaaS Revenue</strong> — Resell AI seats to 10 businesses = <strong style="color:var(--green);">RM600k/yr</strong> gross revenue.</li>
                 </ul>
             </div>
             <div>
-                <div class="accent-line-green"></div>
-                <div class="stat-row" style="margin-top:0; flex-direction:column; gap:10px;">
-                    <div class="g-card accent-cyan" style="padding:14px 16px;">
-                        <p style="font-size:0.6em !important; margin:0;"><span style="font-family:'Outfit',sans-serif; font-size:1.6em; font-weight:900; color:var(--cyan);">4–12</span> <span style="color:#8a9bb5;">months to break-even</span></p>
-                        <p style="margin-top:4px;">vs. RM5,000+/mo cloud API overhead that never ends.</p>
+                <div class="stat-row" style="margin-top:0; flex-direction:column; gap:12px;">
+                    <div class="g-card accent-cyan">
+                        <span style="font-family:'Outfit',sans-serif; font-size:36px; font-weight:900; color:var(--cyan);">4–12</span>
+                        <span style="font-size:18px; color:var(--text-muted);"> months to break-even</span>
                     </div>
-                    <div class="g-card accent-green" style="padding:14px 16px;">
-                        <p style="font-size:0.6em !important; margin:0;"><span style="font-family:'Outfit',sans-serif; font-size:1.6em; font-weight:900; color:var(--green);">332%</span> <span style="color:#8a9bb5;">return on hardware</span></p>
-                        <p style="margin-top:4px;">via "AI-in-a-Box" enterprise appliance leasing to banks and GLCs.</p>
+                    <div class="g-card accent-green">
+                        <span style="font-family:'Outfit',sans-serif; font-size:36px; font-weight:900; color:var(--green);">332%</span>
+                        <span style="font-size:18px; color:var(--text-muted);"> return via appliance leasing</span>
                     </div>
-                    <div class="g-card accent-yellow" style="padding:14px 16px;">
-                        <p style="font-size:0.6em !important; margin:0;"><span style="font-family:'Outfit',sans-serif; font-size:1.6em; font-weight:900; color:var(--yellow);">RM115B</span> <span style="color:#8a9bb5;">AI economic impact (Malaysia, 5-yr)</span></p>
-                        <p style="margin-top:4px;">First-mover advantage in a rapidly forming market with very few local providers.</p>
+                    <div class="g-card accent-yellow">
+                        <span style="font-family:'Outfit',sans-serif; font-size:36px; font-weight:900; color:var(--yellow);">RM115B</span>
+                        <span style="font-size:18px; color:var(--text-muted);"> AI economic impact (MY, 5yr)</span>
                     </div>
                 </div>
             </div>
@@ -518,495 +487,414 @@
     </section>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     COLUMN 2 — CLOUD RENTING TRAP
-══════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════ COLUMN 2 — CLOUD RENTING TRAP ═══════════════════ -->
 <section>
-    <!-- Slide 2A: Main -->
+    <!-- 2A: Main -->
     <section>
         <div class="deck-label"><i class="fas fa-exclamation-triangle"></i> Question 01 — The True Cost</div>
-        <h2 class="deck-title">Is your AI strategy losing money<br>to <span class="hi">Cloud Renting?</span></h2>
+        <h2 class="deck-title">Is your AI strategy losing money to <span class="hi">Cloud Renting?</span></h2>
         <table class="cmp-table">
             <thead>
-                <tr>
-                    <th>Operating Dimension</th>
-                    <th>☁️ Global Cloud (AWS / Azure / API)</th>
-                    <th>🖥️ Sinlexon Private Server (Own)</th>
-                </tr>
+                <tr><th>Dimension</th><th>☁️ Cloud (AWS/Azure/API)</th><th>🖥️ Sinlexon Server (Own)</th></tr>
             </thead>
             <tbody>
                 <tr class="fragment">
-                    <td>5-Year Cumulative Fees</td>
-                    <td><span style="color:var(--red); font-weight:700;">RM13,800 – RM300,000+</span><br><small style="color:#555;">Pure recurring overhead, zero asset value</small></td>
+                    <td>5-Year Fees</td>
+                    <td><span style="color:var(--red); font-weight:700;">RM13,800 – RM300,000+</span><br><small style="color:#555;">Pure recurring overhead</small></td>
                     <td class="win-cell">
                         <span class="win-badge">CAPITAL ASSET</span>
                         <span class="price-big">RM30k – RM100k</span>
-                        <small style="color:#88cc88;">One-time purchase, fully depreciable, resaleable</small>
+                        <small style="color:#88cc88;">One-time, depreciable, resaleable</small>
                     </td>
                 </tr>
                 <tr class="fragment">
-                    <td>Data Privacy &amp; PDPA</td>
-                    <td><span style="color:var(--red); font-weight:700;"><i class="fas fa-times-circle"></i> High Risk</span><br><small style="color:#555;">Data leaves Malaysia to US servers. $10.22M avg breach cost.</small></td>
+                    <td>Data Privacy</td>
+                    <td><span style="color:var(--red); font-weight:700;"><i class="fas fa-times-circle"></i> High Risk</span><br><small style="color:#555;">Data sent to US servers</small></td>
                     <td class="win-cell">
-                        <span class="price-big">100% Compliant</span>
-                        <small style="color:#88cc88;">Data never leaves your physical server room</small>
+                        <span class="price-big">100% PDPA Compliant</span>
+                        <small style="color:#88cc88;">Data never leaves your office</small>
                     </td>
                 </tr>
                 <tr class="fragment">
-                    <td>Query Limits &amp; Bandwidth</td>
-                    <td><span style="color:var(--red); font-weight:700;">Throttled + Egress Fees</span><br><small style="color:#555;">RM4,200 per 10TB data egress (AWS standard)</small></td>
+                    <td>Queries</td>
+                    <td><span style="color:var(--red); font-weight:700;">Throttled + Bandwidth Fees</span><br><small style="color:#555;">RM4,200 per 10TB egress</small></td>
                     <td class="win-cell">
-                        <span class="price-big">Unlimited Queries</span>
-                        <small style="color:#88cc88;">RM0 transfer fees — full-speed LAN</small>
-                    </td>
-                </tr>
-                <tr class="fragment">
-                    <td>Model Customization</td>
-                    <td><span style="color:var(--yellow); font-weight:700;">Locked to Vendor Models</span><br><small style="color:#555;">OpenAI controls what ChatGPT knows about your business</small></td>
-                    <td class="win-cell">
-                        <span class="price-big">Full Fine-Tuning</span>
-                        <small style="color:#88cc88;">Train on your company documents with Unsloth</small>
+                        <span class="price-big">Unlimited · RM0</span>
+                        <small style="color:#88cc88;">Full-speed LAN</small>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <div class="nav-hint"><i class="fas fa-chevron-down"></i> Press ↓ for PDPA Compliance Deep-Dive</div>
+        <div class="nav-hint"><i class="fas fa-chevron-down"></i> Press ↓ for PDPA Deep-Dive</div>
     </section>
 
-    <!-- Slide 2B: PDPA Compliance Deep Dive -->
+    <!-- 2B: PDPA -->
     <section class="deep-dive">
         <div class="dive-label"><i class="fas fa-shield-alt"></i> REGULATORY DEEP-DIVE</div>
-        <div class="deck-label"><i class="fas fa-gavel"></i> Data Privacy &amp; PDPA Compliance</div>
         <h2 class="deck-title">The <span class="hi">Privacy Hazard</span> of Cloud AI</h2>
         <div class="grid-2">
-            <div>
-                <div class="hl-box hl-red">
-                    <strong>⚠️ What happens when you use ChatGPT/Claude for business?</strong><br><br>
-                    Every query is transmitted to and processed on US-based servers (OpenAI = San Francisco, Anthropic = San Francisco). This includes:<br><br>
-                    • Customer names, IC numbers, financial data<br>
-                    • Confidential legal contracts and M&amp;A documents<br>
-                    • HR salary records and staff performance files<br>
-                    • Medical patient records (if used in clinics)<br><br>
-                    <strong>Malaysia's PDPA (Personal Data Protection Act 2010) Section 129</strong> prohibits cross-border personal data transfer unless the destination country meets prescribed standards. <strong>The USA is not on Malaysia's approved list.</strong>
-                </div>
+            <div class="hl-box hl-red" style="margin-top:0;">
+                <strong>⚠️ Cloud AI Risk</strong><br><br>
+                Every ChatGPT / Claude query transmits data to US servers. This includes customer data, contracts, HR records, and medical data.<br><br>
+                <strong>PDPA Section 129</strong> prohibits cross-border personal data transfer to unapproved countries. <strong>The USA is not on Malaysia's approved list.</strong>
             </div>
-            <div>
-                <div class="hl-box hl-green" style="margin-top:0;">
-                    <strong>✅ Sinlexon Private Server = Zero Legal Risk</strong><br><br>
-                    All data processing occurs on hardware physically located within your office or a Malaysian Tier-3 datacenter (AIMS/TM One, Cyberjaya). This means:<br><br>
-                    • <strong>Zero cross-border data transfer</strong> — 100% PDPA-compliant<br>
-                    • No data exposure to foreign intelligence agencies<br>
-                    • Fully auditable — complete data sovereignty<br>
-                    • Ideal for legal firms, healthcare, finance, and government contractors
-                </div>
-                <div class="hl-box hl-cyan" style="margin-top:12px;">
-                    <strong>IBM Data Breach Report 2025:</strong> Average cost of a data breach is <strong>USD $10.22 million (≈ RM47M)</strong>. Local AI infrastructure eliminates this entire risk category.
-                </div>
+            <div class="hl-box hl-green" style="margin-top:0;">
+                <strong>✅ Local Server = Zero Risk</strong><br><br>
+                All processing on hardware physically in your office or Malaysian Tier-3 datacenter.<br><br>
+                • Zero cross-border transfer<br>
+                • Fully auditable<br>
+                • Ideal for legal, healthcare, finance &amp; government<br><br>
+                <strong>IBM 2025:</strong> Avg data breach cost = <strong>USD $10.22M (≈RM47M)</strong>
             </div>
         </div>
     </section>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     COLUMN 3 — AIR COOLING & CASING
-══════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════ COLUMN 3 — AIR COOLING ═══════════════════ -->
 <section>
-    <!-- Slide 3A: Main -->
+    <!-- 3A: Main -->
     <section data-background-image="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=1920" data-background-opacity="0.1">
         <div class="deck-label"><i class="fas fa-shield-alt"></i> Question 02 — Enterprise Standards</div>
-        <h2 class="deck-title">Professional Casing &amp; <span class="hi">Air Cooling Safety</span></h2>
+        <h2 class="deck-title">Professional Casing &amp; <span class="hi">Air Cooling</span></h2>
         <div class="grid-3">
             <div class="g-card accent-cyan fragment">
-                <i class="fas fa-lock" style="color:var(--cyan);"></i>
+                <i class="fas fa-lock card-icon" style="color:var(--cyan);"></i>
                 <h4>Corporate Chassis</h4>
-                <p><strong>SilverStone RM44 4U Rackmount</strong> with lockable secure bezel. Can stand vertically as a stealthy tower or slide directly into a datacenter rack. No gaming glass or RGB.</p>
+                <p class="card-text"><strong>SilverStone RM44 4U Rackmount</strong> — lockable bezel. Tower or rack-mount. No glass or RGB.</p>
             </div>
             <div class="g-card accent-green fragment">
-                <i class="fas fa-wind" style="color:var(--green);"></i>
+                <i class="fas fa-wind card-icon" style="color:var(--green);"></i>
                 <h4>100% Air-Cooled</h4>
-                <p><strong>Noctua Industrial NH-D15 G2</strong> — world's leading dual-tower cooler. Zero leak risk, zero pump failures, 10+ year lifespan. If a fan fails: RM80 replacement in 2 minutes.</p>
+                <p class="card-text"><strong>Noctua NH-D15 G2</strong> — world's best air cooler. Zero leak risk, zero pump failures, 10-year lifespan.</p>
             </div>
             <div class="g-card fragment">
-                <i class="fas fa-volume-mute" style="color:var(--purple);"></i>
+                <i class="fas fa-volume-mute card-icon" style="color:var(--purple);"></i>
                 <h4>Silent Office Build</h4>
-                <p>Optional <strong>Fractal Design Define 7 XL</strong> Stealth Solid. Double-walled sound-dampened panels for whisper-quiet office placement alongside staff.</p>
+                <p class="card-text">Optional <strong>Fractal Define 7 XL</strong> Stealth. Double-walled sound dampening for quiet office use.</p>
             </div>
         </div>
-        <div class="hl-box hl-yellow fragment" style="margin-top:14px;">
-            <strong><i class="fas fa-info-circle"></i> Why no liquid cooling?</strong> Standard enterprise server rooms and datacenters prohibit liquid-cooled systems due to severe leakage risks that can destroy high-value GPUs and servers. Noctua premium air cooling delivers equal thermal performance with zero maintenance hazards.
+        <div class="hl-box hl-yellow fragment">
+            <strong><i class="fas fa-info-circle"></i> No liquid cooling.</strong> Enterprise datacenters prohibit liquid cooling due to leak risk. Noctua air cooling delivers equal performance with zero maintenance hazards.
         </div>
-        <div class="nav-hint"><i class="fas fa-chevron-down"></i> Press ↓ for GPU Frame Sizing</div>
+        <div class="nav-hint"><i class="fas fa-chevron-down"></i> Press ↓ for GPU Sizing Comparison</div>
     </section>
 
-    <!-- Slide 3B: GPU Frame Sizing -->
+    <!-- 3B: GPU Sizing -->
     <section class="deep-dive">
-        <div class="dive-label"><i class="fas fa-microchip"></i> TECHNICAL DEEP-DIVE</div>
-        <div class="deck-label"><i class="fas fa-expand-arrows-alt"></i> GPU Physical &amp; Thermal Sizing</div>
-        <h2 class="deck-title">Why <span class="hi-yellow">Card Size Matters</span> for Server Builds</h2>
+        <div class="dive-label"><i class="fas fa-microchip"></i> GPU DEEP-DIVE</div>
+        <h2 class="deck-title">Why <span class="hi-yellow">Card Selection</span> Matters</h2>
         <div class="grid-2">
             <div class="g-card accent-red">
-                <h4 style="color:var(--red);">⚠️ RTX 5090 — Consumer Card Challenges</h4>
-                <ul class="blist" style="margin-top:8px;">
-                    <li><i class="fas fa-times-circle r"></i> <strong>Massive triple-slot 3.5-slot cooler</strong> — requires enormous tower case, not rack-friendly</li>
-                    <li><i class="fas fa-times-circle r"></i> <strong>600W TDP thermal design</strong> — requires large case airflow volume &amp; additional exhaust fans</li>
-                    <li><i class="fas fa-times-circle r"></i> <strong>16-pin 12V-2×6 connector</strong> — proprietary power delivery. Cable management difficult in 4U rack</li>
-                    <li><i class="fas fa-times-circle r"></i> <strong>Consumer-grade warranty</strong> — no enterprise SLA, limited downtime coverage</li>
+                <h4 style="color:var(--red);">⚠️ RTX 5090 — Consumer</h4>
+                <ul class="blist" style="margin-top:10px;">
+                    <li><i class="fas fa-times-circle r"></i> Massive 3.5-slot cooler — not rack-friendly</li>
+                    <li><i class="fas fa-times-circle r"></i> 600W TDP — needs big airflow</li>
+                    <li><i class="fas fa-times-circle r"></i> Consumer warranty only</li>
                 </ul>
             </div>
             <div class="g-card accent-green">
-                <h4 style="color:var(--green);">✅ RTX PRO 6000 Blackwell — Enterprise Design</h4>
-                <ul class="blist" style="margin-top:8px;">
-                    <li><i class="fas fa-check-circle g"></i> <strong>Dual-slot blower design</strong> — compact, self-exhausting, rack-native from Day 1</li>
-                    <li><i class="fas fa-check-circle g"></i> <strong>96GB unified VRAM</strong> — runs 230B+ parameter models impossible on any consumer card</li>
-                    <li><i class="fas fa-check-circle g"></i> <strong>300W–600W configurable TDP</strong> — 54% less wall power than dual RTX 5090s under AI load</li>
-                    <li><i class="fas fa-check-circle g"></i> <strong>3-year enterprise warranty</strong> — advance replacement SLA, certified for 24/7 datacenter use</li>
+                <h4 style="color:var(--green);">✅ RTX PRO 6000 — Enterprise</h4>
+                <ul class="blist" style="margin-top:10px;">
+                    <li><i class="fas fa-check-circle g"></i> Dual-slot blower — rack-native</li>
+                    <li><i class="fas fa-check-circle g"></i> 96GB unified VRAM (3× consumer)</li>
+                    <li><i class="fas fa-check-circle g"></i> 54% less wall power under AI load</li>
                 </ul>
             </div>
         </div>
-        <div class="hl-box hl-cyan" style="margin-top:12px;">
-            <strong>The Conclusion:</strong> For serious enterprise AI workloads, one purpose-built <strong>RTX PRO 6000 Blackwell</strong> (RM55k) outperforms two consumer RTX 5090 cards (RM30k) in VRAM capacity, rack compatibility, power efficiency, and enterprise reliability.
+        <div class="hl-box hl-cyan" style="margin-top:14px;">
+            <strong>Bottom line:</strong> One RTX PRO 6000 Blackwell (RM55k) outperforms two RTX 5090s (RM34k) in VRAM, rack compatibility, power efficiency, and enterprise warranty.
         </div>
     </section>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     COLUMN 4 — INFRASTRUCTURE TIERS
-══════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════ COLUMN 4 — TIERS ═══════════════════ -->
 <section>
-    <!-- Slide 4A: Main Tiers -->
+    <!-- 4A: Tiers -->
     <section>
         <div class="deck-label"><i class="fas fa-cubes"></i> Question 03 — Hardware Fit</div>
-        <h2 class="deck-title">Three Professional <span class="hi">Infrastructure Tiers</span></h2>
-        <table class="cmp-table" style="font-size: 0.43em !important;">
+        <h2 class="deck-title">Three <span class="hi">Infrastructure Tiers</span></h2>
+        <table class="cmp-table">
             <thead>
-                <tr>
-                    <th>Tier</th>
-                    <th>Key Components</th>
-                    <th>Hardening Features</th>
-                    <th>Best For</th>
-                    <th style="text-align:right;">CapEx</th>
-                </tr>
+                <tr><th>Tier</th><th>Key Components</th><th>Hardening</th><th>Best For</th><th style="text-align:right;">CapEx</th></tr>
             </thead>
             <tbody>
                 <tr class="fragment">
                     <td><span style="color:var(--cyan); font-weight:800; font-family:'Outfit',sans-serif;">Starter</span></td>
-                    <td>1× RTX 5090 (32GB VRAM)<br>Ryzen 9 9950X (16C)<br>64GB DDR5 ECC</td>
-                    <td>Noctua NH-D15 G2 Air<br>1.92TB PLP NVMe SSD<br>1300W Titanium PSU</td>
-                    <td>R&amp;D POC · Light AI Chat<br>7B–14B parameter models</td>
-                    <td style="text-align:right; font-family:'Outfit',sans-serif; font-weight:900; color:var(--cyan); font-size:1.2em;">RM30,000</td>
+                    <td>1× MSI RTX 5090 (32GB)<br>Intel Ultra 9 285K · 96GB RAM</td>
+                    <td>Thermalright PA120 Black<br>4TB KC3000 SSD · NZXT 1000W</td>
+                    <td>R&amp;D POC · 7B–14B models</td>
+                    <td style="text-align:right; font-family:'Outfit',sans-serif; font-weight:900; color:var(--cyan); font-size:22px;">RM30k</td>
                 </tr>
                 <tr class="fragment">
                     <td><span style="color:var(--green); font-weight:800; font-family:'Outfit',sans-serif;">Performance</span></td>
-                    <td>2× RTX 5090 (64GB VRAM)<br>Ryzen 9 9950X (16C)<br>128GB DDR5 ECC</td>
-                    <td>Dual Noctua Air Cooling<br>1.92TB PLP NVMe SSD<br>1600W Titanium PSU</td>
-                    <td>RAG Knowledge Base<br>70B models · Multi-user</td>
-                    <td style="text-align:right; font-family:'Outfit',sans-serif; font-weight:900; color:var(--green); font-size:1.2em;">RM50,000</td>
+                    <td>2× RTX 5090 (64GB)<br>Ryzen 9 9950X · 128GB ECC</td>
+                    <td>Noctua NH-D15 G2<br>1.92TB PLP SSD · 1600W Ti</td>
+                    <td>RAG · 70B models · Multi-user</td>
+                    <td style="text-align:right; font-family:'Outfit',sans-serif; font-weight:900; color:var(--green); font-size:22px;">RM50k</td>
                 </tr>
                 <tr class="fragment">
                     <td><span style="color:var(--yellow); font-weight:800; font-family:'Outfit',sans-serif;">Enterprise</span></td>
-                    <td>1× RTX PRO 6000 (96GB)<br>Threadripper 7980X (64C)<br>256GB DDR5 ECC RDIMM</td>
-                    <td>Noctua NH-U14S TR5-SP6<br>3.84TB PLP NVMe SSD<br>ASPEED AST2600 BMC IPMI</td>
-                    <td>Fine-tuning (Unsloth)<br>230B+ models · SaaS Serving</td>
-                    <td style="text-align:right; font-family:'Outfit',sans-serif; font-weight:900; color:var(--yellow); font-size:1.2em;">RM100,000</td>
+                    <td>1× RTX PRO 6000 (96GB)<br>Threadripper 7980X · 256GB ECC</td>
+                    <td>Noctua TR5-SP6<br>3.84TB PLP · BMC IPMI</td>
+                    <td>Fine-tuning · 230B+ · SaaS</td>
+                    <td style="text-align:right; font-family:'Outfit',sans-serif; font-weight:900; color:var(--yellow); font-size:22px;">RM100k</td>
                 </tr>
             </tbody>
         </table>
         <div class="nav-hint"><i class="fas fa-chevron-down"></i> Press ↓ for Full Bill of Materials</div>
     </section>
 
-    <!-- Slide 4B: Full BOM -->
+    <!-- 4B: BOM -->
     <section class="deep-dive">
         <div class="dive-label"><i class="fas fa-list-alt"></i> BILL OF MATERIALS</div>
-        <div class="deck-label"><i class="fas fa-shopping-cart"></i> Starter Tier — Complete Component Breakdown</div>
-        <h2 class="deck-title">RM30,000 <span class="hi">Bill of Materials</span></h2>
+        <h2 class="deck-title">RM30k Starter <span class="hi">BOM</span></h2>
         <div class="scrollable">
             <table class="bom-table">
-                <thead>
-                    <tr>
-                        <th>Component</th><th>Model / Specification</th><th>Purpose</th><th style="text-align:right;">Est. Price</th>
-                    </tr>
-                </thead>
+                <thead><tr><th>Component</th><th>Model</th><th style="text-align:right;">Price</th></tr></thead>
                 <tbody>
-                    <tr><td>GPU</td><td>NVIDIA GeForce RTX 5090 32GB GDDR7</td><td>Primary AI inference accelerator. 32GB VRAM for 7B–14B models.</td><td style="text-align:right; color:var(--cyan);">RM15,400</td></tr>
-                    <tr><td>CPU</td><td>AMD Ryzen 9 9950X (16-Core, 5.7GHz)</td><td>Host processor for serving requests, pre/post-processing, Docker containers.</td><td style="text-align:right; color:var(--cyan);">RM3,500</td></tr>
-                    <tr><td>Motherboard</td><td>ASUS ProArt X870E Creator WiFi</td><td>Professional AM5 platform, PCIe 5.0 x16, dual LAN.</td><td style="text-align:right; color:var(--cyan);">RM2,100</td></tr>
-                    <tr><td>RAM</td><td>64GB DDR5-6000 ECC (2× 32GB Kingston)</td><td>ECC auto-corrects memory errors. Critical for 24/7 AI server stability.</td><td style="text-align:right; color:var(--cyan);">RM1,200</td></tr>
-                    <tr><td>Storage</td><td>Micron 7450 Pro 1.92TB NVMe (PLP)</td><td>Enterprise SSD with Power-Loss Protection. Prevents model corruption on power cut.</td><td style="text-align:right; color:var(--cyan);">RM2,400</td></tr>
-                    <tr><td>Cooler</td><td>Noctua NH-D15 G2 Dual-Tower Air Cooler</td><td>World's #1 air cooler. Zero leak risk. Handles 250W TDP CPU in full load.</td><td style="text-align:right; color:var(--cyan);">RM420</td></tr>
-                    <tr><td>PSU</td><td>Seasonic Prime PX-1300 Titanium (96%+)</td><td>80+ Titanium efficiency. Stable power delivery to RTX 5090 and CPU under full load.</td><td style="text-align:right; color:var(--cyan);">RM1,100</td></tr>
-                    <tr><td>Case</td><td>SilverStone RM44 4U Rackmount</td><td>Rack-ready or tower-convertible. Secure lockable bezel. Professional corporate appearance.</td><td style="text-align:right; color:var(--cyan);">RM950</td></tr>
-                    <tr><td>Networking</td><td>Intel I226-V 2.5GbE Onboard + Switch</td><td>Fast LAN access for all office users. Sub-10ms local inference latency.</td><td style="text-align:right; color:var(--cyan);">RM250</td></tr>
-                    <tr><td>UPS</td><td>APC Back-UPS Pro 1500VA</td><td>Protects against office power outages. Safe shutdown. Supports PLP SSD.</td><td style="text-align:right; color:var(--cyan);">RM680</td></tr>
-                    <tr class="total"><td colspan="3"><strong>Total Estimated Hardware Investment</strong></td><td style="text-align:right; font-size:1.1em;">≈ RM28,000</td></tr>
-                    <tr><td style="color:#555;" colspan="3">Service: Setup, configuration, software install, and staff training (one-time)</td><td style="text-align:right; color:#555;">RM2,000</td></tr>
-                    <tr class="total"><td colspan="3"><strong>All-In Total</strong></td><td style="text-align:right; font-size:1.2em; color:var(--green);">≈ RM30,000</td></tr>
+                    <tr><td>GPU</td><td>MSI Gaming Trio RTX 5090 (Retail)</td><td style="text-align:right; color:var(--cyan);">RM17,000</td></tr>
+                    <tr><td>CPU</td><td>Intel Core Ultra 9 285K (24C, 5.7GHz)</td><td style="text-align:right; color:var(--cyan);">RM2,799</td></tr>
+                    <tr><td>Motherboard</td><td>GIGABYTE Z890 AORUS MASTER AI TOP</td><td style="text-align:right; color:var(--cyan);">RM2,400</td></tr>
+                    <tr><td>RAM</td><td>96GB Corsair Vengeance DDR5 (2×48GB)</td><td style="text-align:right; color:var(--cyan);">RM1,600</td></tr>
+                    <tr><td>Storage</td><td>4TB Kingston KC3000 NVMe (2×2TB)</td><td style="text-align:right; color:var(--cyan);">RM1,500</td></tr>
+                    <tr><td>Cooler</td><td>Thermalright Peerless Assassin 120 Black</td><td style="text-align:right; color:var(--cyan);">RM180</td></tr>
+                    <tr><td>PSU</td><td>NZXT C1000 Core 1000W ATX 3.1 Gold</td><td style="text-align:right; color:var(--cyan);">RM750</td></tr>
+                    <tr><td>Case</td><td>SilverStone SST-RM44 4U Rackmount</td><td style="text-align:right; color:var(--cyan);">RM950</td></tr>
+                    <tr><td>Network</td><td>2.5GbE NIC / Switch</td><td style="text-align:right; color:var(--cyan);">RM199</td></tr>
+                    <tr><td>Misc</td><td>Cables, rails & accessories</td><td style="text-align:right; color:var(--cyan);">RM150</td></tr>
+                    <tr class="total"><td colspan="2"><strong>Hardware Subtotal</strong></td><td style="text-align:right;">≈ RM27,528</td></tr>
+                    <tr><td colspan="2" style="color:#555;">Setup + config + training (one-time)</td><td style="text-align:right; color:#555;">RM2,000</td></tr>
+                    <tr class="total"><td colspan="2"><strong>All-In Total</strong></td><td style="text-align:right; color:var(--green); font-size:18px;">≈ RM29,528</td></tr>
+                    <tr class="budget"><td colspan="2" style="color:#888;">Remaining Budget for Online UPS / Server Rails</td><td style="text-align:right; color:var(--green); font-weight:700;">+RM472</td></tr>
                 </tbody>
             </table>
         </div>
     </section>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     COLUMN 5 — HARDWARE HARDENING
-══════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════ COLUMN 5 — HARDWARE HARDENING ═══════════════════ -->
 <section>
-    <!-- Slide 5A: Main -->
+    <!-- 5A: Main -->
     <section data-background-image="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=1920" data-background-opacity="0.08">
         <div class="deck-label"><i class="fas fa-microchip"></i> Hardware Hardening</div>
-        <h2 class="deck-title">Engineered for <span class="hi">Zero-Downtime Reliability</span></h2>
-        <div class="grid-4">
+        <h2 class="deck-title">Engineered for <span class="hi">Zero-Downtime</span></h2>
+        <div class="grid-2">
             <div class="g-card accent-cyan fragment" style="text-align:center;">
-                <i class="fas fa-memory" style="color:var(--cyan);"></i>
+                <i class="fas fa-memory card-icon" style="color:var(--cyan);"></i>
                 <h4>ECC Memory</h4>
-                <p>Auto-detects &amp; corrects single-bit memory errors. Critical for 24/7 AI models that crash on standard consumer RAM.</p>
+                <p class="card-text">Auto-detects and corrects memory errors. Critical for 24/7 AI models that crash on consumer RAM.</p>
             </div>
             <div class="g-card accent-green fragment" style="text-align:center;">
-                <i class="fas fa-hdd" style="color:var(--green);"></i>
+                <i class="fas fa-hdd card-icon" style="color:var(--green);"></i>
                 <h4>Enterprise PLP SSDs</h4>
-                <p>Power-Loss Protection capacitor arrays. Prevents deep learning model corruption during unexpected power cuts.</p>
+                <p class="card-text">Power-Loss Protection capacitor arrays prevent model corruption during power cuts.</p>
             </div>
             <div class="g-card fragment" style="text-align:center;">
-                <i class="fas fa-network-wired" style="color:var(--purple);"></i>
+                <i class="fas fa-network-wired card-icon" style="color:var(--purple);"></i>
                 <h4>ASPEED BMC (IPMI)</h4>
-                <p>Out-of-band remote management. Hard reboot, BIOS access, hardware sensors — even if OS is completely frozen.</p>
+                <p class="card-text">Out-of-band remote management. Hard reboot and BIOS access even if OS is frozen.</p>
             </div>
             <div class="g-card accent-yellow fragment" style="text-align:center;">
-                <i class="fas fa-charging-station" style="color:var(--yellow);"></i>
-                <h4>Titanium PSU</h4>
-                <p>96%+ efficiency. Cleaner, stable power to GPUs. Reduces heat and lowers monthly utility bills significantly.</p>
+                <i class="fas fa-charging-station card-icon" style="color:var(--yellow);"></i>
+                <h4>Titanium PSU (96%+)</h4>
+                <p class="card-text">Cleaner power to GPUs. Less heat. Lower monthly utility bills.</p>
             </div>
         </div>
-        <div class="hl-box hl-green fragment">
-            <strong>Result:</strong> This hardware combination is the same stack deployed in professional colocation datacenters — just at your office scale. Designed for <strong>99.9%+ uptime</strong> over a 10-year lifespan.
-        </div>
-        <div class="nav-hint"><i class="fas fa-chevron-down"></i> Press ↓ for MSP Service SLA</div>
+        <div class="nav-hint"><i class="fas fa-chevron-down"></i> Press ↓ for Managed Service SLA</div>
     </section>
 
-    <!-- Slide 5B: MSP Service SLA -->
+    <!-- 5B: MSP -->
     <section class="deep-dive">
-        <div class="dive-label"><i class="fas fa-tools"></i> MANAGED SERVICE PLAN</div>
-        <div class="deck-label"><i class="fas fa-headset"></i> The Managed Service Advantage</div>
-        <h2 class="deck-title">No In-House AI Engineer <span class="hi">Required</span></h2>
+        <div class="dive-label"><i class="fas fa-tools"></i> MANAGED SERVICE</div>
+        <h2 class="deck-title">No AI Engineer <span class="hi">Required</span></h2>
         <div class="grid-2">
-            <div>
-                <div class="hl-box hl-red" style="margin-top:0;">
-                    <strong>❌ The Alternative: Hire an In-House AI Engineer</strong><br><br>
-                    • Salary: RM70,000–RM100,000/year<br>
-                    • EPF + SOCSO + benefits: RM15,000+/year<br>
-                    • 3–6 months to hire and onboard<br>
-                    • Risk of resignation and knowledge walkout<br>
-                    • Additional hardware setup labor<br><br>
-                    <strong>5-Year cost: RM425,000–RM575,000</strong>
-                </div>
+            <div class="hl-box hl-red" style="margin-top:0;">
+                <strong>❌ Hire In-House AI Engineer</strong><br><br>
+                • Salary: RM70k–100k/year<br>
+                • EPF + SOCSO: RM15k+/year<br>
+                • 3–6 months to recruit<br>
+                • Knowledge walkout risk<br><br>
+                <strong style="font-size:20px;">5-Year: RM425k–RM575k</strong>
             </div>
-            <div>
-                <div class="hl-box hl-green" style="margin-top:0;">
-                    <strong>✅ Sinlexon Managed Service Plan (MSP)</strong><br><br>
-                    • <strong>One-Time Setup</strong>: Full hardware installation, Docker + Ollama + Open WebUI configuration, LAN access setup. RM2,000–RM5,000.<br><br>
-                    • <strong>Annual Service Contract</strong>: Remote monitoring, model updates, security patches, 8-business-hour response SLA. RM3,000/year.<br><br>
-                    • <strong>On-Site Emergency SLA</strong>: Hardware swap and physical server support within 24 hours if needed.<br><br>
-                    <strong>5-Year total cost: RM17,000–RM20,000</strong>
-                </div>
-                <div class="hl-box hl-cyan" style="margin-top:12px;">
-                    <strong>Saving:</strong> RM405,000–RM555,000 over 5 years vs. a dedicated in-house engineer — while maintaining the same quality of AI infrastructure support.
-                </div>
+            <div class="hl-box hl-green" style="margin-top:0;">
+                <strong>✅ Sinlexon MSP Plan</strong><br><br>
+                • Setup: RM2k–5k (one-time)<br>
+                • Annual support: RM3k/yr<br>
+                • 8-hour response SLA<br>
+                • On-site emergency within 24hr<br><br>
+                <strong style="font-size:20px;">5-Year: RM17k–RM20k</strong>
             </div>
+        </div>
+        <div class="hl-box hl-cyan" style="margin-top:14px; text-align:center;">
+            <strong style="font-size:20px;">Saving: RM405k–RM555k over 5 years</strong>
         </div>
     </section>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     COLUMN 6 — ROI & POWER PARADOX
-══════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════ COLUMN 6 — ROI & POWER ═══════════════════ -->
 <section>
-    <!-- Slide 6A: Main -->
+    <!-- 6A: Main -->
     <section>
         <div class="deck-label"><i class="fas fa-calculator"></i> Operating Cost ROI</div>
-        <h2 class="deck-title">ROI Math &amp; The <span class="hi-yellow">Power Paradox</span></h2>
+        <h2 class="deck-title">The <span class="hi-yellow">Power Paradox</span> &amp; ROI</h2>
         <div class="grid-2">
             <div class="g-card accent-yellow">
-                <i class="fas fa-bolt" style="color:var(--yellow);"></i>
-                <h4>⚡ The Power Paradox</h4>
-                <p style="font-size:0.58em !important; color:#bbb; line-height:1.5;">The <strong style="color:#fff;">RM100k Enterprise Server</strong> uses <strong style="color:var(--green);">54% LESS electricity</strong> than the RM50k Performance Server under identical AI workload:</p>
-                <div class="sep"></div>
-                <div style="display:flex; flex-direction:column; gap:10px; font-size:0.52em;">
-                    <div style="background:rgba(255,82,82,0.06); border:1px solid rgba(255,82,82,0.15); border-radius:8px; padding:10px 12px;">
-                        <span style="color:var(--red); font-weight:700;">Performance (2× RTX 5090)</span><br>
-                        ~1,300W under load → <strong style="color:#fff;">RM140/month</strong> electricity
-                    </div>
-                    <div style="background:rgba(0,230,118,0.04); border:1px solid rgba(0,230,118,0.15); border-radius:8px; padding:10px 12px;">
-                        <span style="color:var(--green); font-weight:700;">Enterprise (1× RTX PRO 6000)</span><br>
-                        ~750W under load → <strong style="color:#fff;">RM59/month</strong> electricity
-                    </div>
-                    <div style="font-size:0.9em; color:#555; padding:4px 0;">One dedicated Blackwell GPU (300–600W TDP) beats two high-wattage consumer cards at the wall.</div>
+                <h4><i class="fas fa-bolt" style="color:var(--yellow); margin-right:8px;"></i>The Power Paradox</h4>
+                <p class="card-text" style="margin-bottom:14px;">The <strong style="color:#fff;">RM100k server uses 54% LESS electricity</strong> than the RM50k server under AI load:</p>
+                <div style="background:rgba(255,82,82,0.06); border:1px solid rgba(255,82,82,0.15); border-radius:8px; padding:12px 14px; margin-bottom:8px; font-size:16px; color:#ccc;">
+                    <span style="color:var(--red); font-weight:700;">Performance (2× RTX 5090)</span><br>
+                    ~1,300W → <strong style="color:#fff;">RM140/mo</strong>
+                </div>
+                <div style="background:rgba(0,230,118,0.04); border:1px solid rgba(0,230,118,0.15); border-radius:8px; padding:12px 14px; font-size:16px; color:#ccc;">
+                    <span style="color:var(--green); font-weight:700;">Enterprise (1× RTX PRO 6000)</span><br>
+                    ~750W → <strong style="color:#fff;">RM59/mo</strong>
                 </div>
             </div>
             <div>
-                <div class="accent-line-green"></div>
-                <h4 style="font-family:'Outfit',sans-serif; font-size:0.8em; font-weight:700; color:#fff; margin-bottom:12px;">5-Year Net Economic Savings</h4>
+                <h4 style="font-family:'Outfit',sans-serif; font-size:20px; font-weight:700; color:#fff; margin-bottom:14px;">5-Year Net Savings</h4>
                 <ul class="blist">
-                    <li><i class="fas fa-piggy-bank g"></i> <strong>Break-Even in 4–12 Months</strong>: Zero API charges after hardware pays itself off from eliminated subscriptions.</li>
-                    <li><i class="fas fa-hand-holding-usd g"></i> <strong>SaaS Yield Potential</strong>: 10 B2B reselling clients at RM5,000/mo = <strong style="color:var(--green);">RM600k/year</strong> gross recurring revenue.</li>
-                    <li><i class="fas fa-chart-pie g"></i> <strong>Zero Equity Dilution</strong>: MSP setup (RM2k–5k) + annual maintenance (RM3k/yr) eliminates the need for a RM80k/yr in-house AI engineer.</li>
-                    <li><i class="fas fa-building g"></i> <strong>Colocation Option</strong>: Move RM44 rack servers to AIMS/TM One datacenter (RM800/mo). Get 99.99% SLA uptime, 10Gbps fiber, and redundant power.</li>
+                    <li><i class="fas fa-piggy-bank g"></i> <strong>Break-even in 4–12 months</strong> — zero API charges after payoff.</li>
+                    <li><i class="fas fa-hand-holding-usd g"></i> <strong>SaaS Revenue</strong> — 10 clients × RM5k/mo = <strong style="color:var(--green);">RM600k/yr</strong>.</li>
+                    <li><i class="fas fa-building g"></i> <strong>Colocation</strong> — Move to datacenter for RM800/mo. 99.99% SLA.</li>
                 </ul>
             </div>
         </div>
-        <div class="nav-hint"><i class="fas fa-chevron-down"></i> Press ↓ for Geopolitical &amp; Macro Analysis</div>
+        <div class="nav-hint"><i class="fas fa-chevron-down"></i> Press ↓ for Geopolitical Context</div>
     </section>
 
-    <!-- Slide 6B: Geopolitical Context -->
+    <!-- 6B: Geopolitical -->
     <section class="deep-dive">
-        <div class="dive-label"><i class="fas fa-globe-asia"></i> GEOPOLITICAL CONTEXT</div>
-        <div class="deck-label"><i class="fas fa-landmark"></i> Malaysia's AI Infrastructure Boom</div>
-        <h2 class="deck-title">The <span class="hi">Macro Tailwind</span> Behind Local AI</h2>
+        <div class="dive-label"><i class="fas fa-globe-asia"></i> MACRO CONTEXT</div>
+        <h2 class="deck-title">Malaysia's AI <span class="hi">Infrastructure Boom</span></h2>
         <div class="stat-row">
-            <div class="stat-pill"><span class="num c">2.3 GW</span><span class="lbl">MY Datacenter Capacity</span></div>
-            <div class="stat-pill"><span class="num g">RM5.9B</span><span class="lbl">AI Investment Commitments</span></div>
-            <div class="stat-pill"><span class="num y">RM115B</span><span class="lbl">AI Economic Impact (5yr)</span></div>
-            <div class="stat-pill"><span class="num p">$4.3B</span><span class="lbl">YTL + NVIDIA (Johor)</span></div>
+            <div class="stat-pill"><span class="num c">2.3 GW</span><span class="lbl">MY DC Capacity</span></div>
+            <div class="stat-pill"><span class="num g">RM5.9B</span><span class="lbl">AI Commitments</span></div>
+            <div class="stat-pill"><span class="num y">$4.3B</span><span class="lbl">YTL + NVIDIA</span></div>
+            <div class="stat-pill"><span class="num p">$2.1B</span><span class="lbl">ByteDance (Johor)</span></div>
         </div>
         <div class="grid-2" style="margin-top:14px;">
             <div>
-                <div class="accent-line-cyan"></div>
                 <ul class="blist">
-                    <li><i class="fas fa-flag-checkered c"></i> <strong>Malaysia AI Nation 2030</strong>: RM2B sovereign AI cloud fund. 30% of GDP from digital economy by 2030.</li>
-                    <li><i class="fas fa-building c"></i> <strong>ByteDance (TikTok)</strong>: $2.1B — 500MW AI data center under construction in Johor. Malaysia is becoming SEA's AI hub.</li>
-                    <li><i class="fas fa-cloud c"></i> <strong>Microsoft, Google, AWS, Oracle</strong>: All building multi-hundred-MW data centers in Malaysia. International validation of Malaysia's strategic position.</li>
+                    <li><i class="fas fa-flag-checkered c"></i> <strong>AI Nation 2030</strong> — RM2B sovereign AI fund. 30% GDP from digital by 2030.</li>
+                    <li><i class="fas fa-cloud c"></i> Microsoft, Google, AWS, Oracle all building multi-hundred-MW sites in Malaysia.</li>
                 </ul>
             </div>
             <div>
-                <div class="accent-line-yellow"></div>
                 <ul class="blist">
-                    <li><i class="fas fa-exchange-alt y"></i> <strong>US–China Chip Export Controls</strong>: NVIDIA exports restricted. Companies holding existing GPU stock have significant scarcity value as pricing rises.</li>
-                    <li><i class="fas fa-dollar-sign y"></i> <strong>USD Inflation Hedge</strong>: Cloud API pricing is in USD. A weaker Ringgit means API costs rise automatically — local AI is ringgit-denominated and inflation-proof.</li>
-                    <li><i class="fas fa-users y"></i> <strong>First-Mover Advantage</strong>: Very few local AI service providers exist today. Sinlexon can capture this market before it becomes crowded in 18–24 months.</li>
+                    <li><i class="fas fa-exchange-alt y"></i> <strong>US–China Chip Controls</strong> — existing GPU stock gains scarcity value.</li>
+                    <li><i class="fas fa-dollar-sign y"></i> <strong>USD Hedge</strong> — cloud API priced in USD. Local AI is ringgit-denominated.</li>
                 </ul>
             </div>
         </div>
     </section>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     COLUMN 7 — SOVEREIGN AI GROWTH MODEL
-══════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════ COLUMN 7 — GROWTH MODEL ═══════════════════ -->
 <section>
-    <!-- Slide 7A: Roadmap -->
+    <!-- 7A: Roadmap -->
     <section data-background-color="#04060f">
         <div class="deck-label"><i class="fas fa-road"></i> Investor Pitch — Growth Roadmap</div>
-        <h2 class="deck-title">The Sovereign AI <span class="hi">Growth &amp; Scaling Model</span></h2>
-        <p class="deck-sub">A highly scalable, asset-backed business model designed to attract venture capital and secure future expansion.</p>
+        <h2 class="deck-title">Sovereign AI <span class="hi">Growth Model</span></h2>
+        <p class="deck-sub">Asset-backed, scalable business model designed to attract venture capital.</p>
         <div class="timeline">
             <div class="tl-step s1 fragment">
                 <div class="tl-dot">01</div>
                 <h5>Local POC</h5>
-                <p>RM30k–100k CapEx. Secure in-house AI with Noctua air cooling. Cut US cloud API spend, secure internal document processing.</p>
+                <p>RM30k–100k CapEx. Cut cloud spend. Secure internal docs.</p>
             </div>
             <div class="tl-step s2 fragment">
                 <div class="tl-dot">02</div>
-                <h5>Multi-Tenant SaaS</h5>
-                <p>Buy 2nd node. Deploy Open WebUI multi-tenant. Onboard 5–8 B2B clients (law, clinics). RM25k–40k/mo recurring revenue.</p>
+                <h5>SaaS Reselling</h5>
+                <p>Open WebUI multi-tenant. 5–8 B2B clients. RM25k–40k/mo.</p>
             </div>
             <div class="tl-step s3 fragment">
                 <div class="tl-dot">03</div>
                 <h5>Colocation</h5>
-                <p>Slide RM44 rack servers into AIMS/TM One Tier-3 DC. RM800/mo slot fee. 99.99% SLA uptime &amp; 10Gbps fiber.</p>
+                <p>RM44 servers into AIMS/TM One. RM800/mo. 99.99% SLA.</p>
             </div>
             <div class="tl-step s4 fragment">
                 <div class="tl-dot">04</div>
                 <h5>Appliance Lease</h5>
-                <p>Scale "AI-in-a-Box" leasing. Pre-configured 4U servers to banks/GLCs. RM6k/mo lease + MSP. <strong>332% return on hardware.</strong></p>
+                <p>"AI-in-a-Box" to banks/GLCs. RM6k/mo lease. 332% return.</p>
             </div>
         </div>
         <div class="hl-box hl-green fragment" style="text-align:center;">
-            <strong>Asset-Backed Scalability:</strong> Every ringgit of investor funding is backed by high-resale enterprise GPUs with 3-year local manufacturer warranty — eliminating standard high-risk software startup pitfalls.
+            <strong>Every ringgit of investor funding is backed by high-resale enterprise GPUs with 3-year warranty</strong> — eliminating standard software startup pitfalls.
         </div>
-        <div class="nav-hint"><i class="fas fa-chevron-down"></i> Press ↓ for Production Use Cases</div>
+        <div class="nav-hint"><i class="fas fa-chevron-down"></i> Press ↓ for Use Cases</div>
     </section>
 
-    <!-- Slide 7B: Use Cases -->
+    <!-- 7B: Use Cases -->
     <section class="deep-dive">
-        <div class="dive-label"><i class="fas fa-briefcase"></i> ENTERPRISE USE CASES</div>
-        <div class="deck-label"><i class="fas fa-industry"></i> Production AI Applications for Malaysian Businesses</div>
+        <div class="dive-label"><i class="fas fa-briefcase"></i> USE CASES</div>
         <h2 class="deck-title">Real <span class="hi">Business Deployments</span></h2>
         <div class="grid-2">
-            <div>
-                <div class="g-card accent-cyan" style="margin-bottom:10px;">
-                    <h4><i class="fas fa-gavel" style="color:var(--cyan); margin-right:6px;"></i> Legal Firms — Offline Contract AI</h4>
-                    <p>Run <strong>DeepSeek-R1 70B</strong> locally on the firm's own server. Lawyers securely query M&amp;A agreements, draft clauses, and run due diligence — with zero document leaving the server room. Full PDPA compliance for CKHT, LHDN, and client data.</p>
-                </div>
-                <div class="g-card accent-green">
-                    <h4><i class="fas fa-heartbeat" style="color:var(--green); margin-right:6px;"></i> Medical Clinics — Patient Record RAG</h4>
-                    <p>Private <strong>Llama 3.1 70B + RAG</strong> pipeline connected to clinic's HIS system. Doctors query patient history, drug interactions, and diagnostic references without uploading sensitive patient data to any cloud service.</p>
-                </div>
+            <div class="g-card accent-cyan" style="margin-bottom:12px;">
+                <h4><i class="fas fa-gavel" style="color:var(--cyan); margin-right:8px;"></i>Legal Firms</h4>
+                <p class="card-text">Run <strong>DeepSeek-R1 70B</strong> locally. Lawyers query M&amp;A contracts, draft clauses — zero data leaving the server. Full PDPA compliance.</p>
             </div>
-            <div>
-                <div class="g-card accent-yellow" style="margin-bottom:10px;">
-                    <h4><i class="fas fa-university" style="color:var(--yellow); margin-right:6px;"></i> Banks &amp; Finance — Internal Copilot</h4>
-                    <p>Fine-tuned <strong>Qwen2.5 72B</strong> (via Unsloth) on internal banking products, compliance SOP, and regulatory guidelines (BNM circulars). Bank officers query instantly without any data breach exposure risk.</p>
-                </div>
-                <div class="g-card">
-                    <h4><i class="fas fa-code" style="color:var(--purple); margin-right:6px;"></i> Software Teams — Private Coding Copilot</h4>
-                    <p>Self-hosted <strong>Qwen2.5-Coder 32B</strong> via Continue.dev IDE plugin. Developers get GitHub Copilot-level autocomplete with <strong>zero source code leaving the company network</strong>. IP protection guaranteed.</p>
-                </div>
+            <div class="g-card accent-green" style="margin-bottom:12px;">
+                <h4><i class="fas fa-heartbeat" style="color:var(--green); margin-right:8px;"></i>Medical Clinics</h4>
+                <p class="card-text"><strong>Llama 3.1 + RAG</strong> on patient records. Doctors query drug interactions and diagnostics without any cloud data exposure.</p>
+            </div>
+            <div class="g-card accent-yellow">
+                <h4><i class="fas fa-university" style="color:var(--yellow); margin-right:8px;"></i>Banks &amp; Finance</h4>
+                <p class="card-text">Fine-tuned <strong>Qwen2.5 72B</strong> on BNM circulars, compliance SOPs. Internal copilot with zero breach risk.</p>
+            </div>
+            <div class="g-card">
+                <h4><i class="fas fa-code" style="color:var(--purple); margin-right:8px;"></i>Software Teams</h4>
+                <p class="card-text">Self-hosted <strong>Qwen2.5-Coder 32B</strong>. GitHub Copilot-level autocomplete with zero source code leaving company network.</p>
             </div>
         </div>
     </section>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     COLUMN 8 — CALL TO ACTION
-══════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════ COLUMN 8 — CALL TO ACTION ═══════════════════ -->
 <section>
-    <!-- Slide 8A: CTA -->
+    <!-- 8A: CTA -->
     <section data-background-color="#000c18" style="text-align:center;">
-        <div style="padding: 10px 0;">
-            <div class="deck-label" style="justify-content:center;"><i class="fas fa-handshake"></i> Strategic Partnership</div>
-            <h1 style="font-family:'Outfit',sans-serif; font-size:2.1em !important; font-weight:900; line-height:1.15; margin-bottom:20px !important;">
-                Start Your AI Journey<br><span style="background:linear-gradient(135deg,#64b5f6,#00e676);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Locally. Securely. Today.</span>
-            </h1>
-            <p style="font-size:0.6em; color:#6a7f9a; max-width:560px; margin:0 auto 30px;">
-                All servers are built-to-order in Malaysia with local warranty and same-week delivery. Setup and onboarding is completed within 7 business days.
-            </p>
-            <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-bottom:28px;">
-                <span class="badge badge-green"><i class="fas fa-calendar-check"></i> 7-Day Setup &amp; Onboarding</span>
-                <span class="badge badge-cyan"><i class="fas fa-certificate"></i> 3-Year Local Warranty</span>
-                <span class="badge badge-yellow"><i class="fas fa-map-marker-alt"></i> Malaysia-Based Support</span>
-            </div>
-            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:16px; padding:24px 36px; display:inline-block; text-align:left; min-width:340px;">
-                <p style="font-size:0.5em; color:#555; margin-bottom:6px;">Sinlexon Sdn Bhd — Technical Proposal</p>
-                <h3 style="font-family:'Outfit',sans-serif; font-size:1.0em !important; font-weight:700; color:var(--cyan); margin-bottom:6px;">sales@sinlexon.com.my</h3>
-                <p style="font-size:0.5em; color:#555;">+603-XXXX XXXX &nbsp;|&nbsp; Kuala Lumpur, Malaysia</p>
-                <div class="sep"></div>
-                <p style="font-size:0.48em; color:#6a7f9a;">View full interactive proposal &amp; pricing calculator:</p>
-                <p style="font-family:'Outfit',sans-serif; font-size:0.75em; font-weight:700; color:var(--green);">chiamtatyin1-sys.github.io/sinlexon-ppt</p>
-            </div>
-            <div class="nav-hint" style="right:30px; bottom:20px;"><i class="fas fa-chevron-down"></i> Press ↓ for Procurement Timeline</div>
+        <div class="deck-label" style="justify-content:center;"><i class="fas fa-handshake"></i> Strategic Partnership</div>
+        <h1 style="font-family:'Outfit',sans-serif; font-size:48px !important; font-weight:900; line-height:1.15; margin-bottom:20px !important;">
+            Start Your AI Journey<br><span style="background:linear-gradient(135deg,#64b5f6,#00e676);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Locally. Securely. Today.</span>
+        </h1>
+        <p style="font-size:18px; color:var(--text-muted); max-width:560px; margin:0 auto 28px;">
+            Built-to-order in Malaysia. Local warranty. Setup and onboarding in <strong style="color:#fff;">7 business days</strong>.
+        </p>
+        <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-bottom:28px;">
+            <span class="badge badge-green"><i class="fas fa-calendar-check"></i> 7-Day Setup</span>
+            <span class="badge badge-cyan"><i class="fas fa-certificate"></i> 3-Year Warranty</span>
+            <span class="badge badge-yellow"><i class="fas fa-map-marker-alt"></i> Malaysia Support</span>
         </div>
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:16px; padding:28px 40px; display:inline-block; text-align:left;">
+            <p style="font-size:14px; color:#555; margin-bottom:8px;">Sinlexon Sdn Bhd — Technical Proposal</p>
+            <h3 style="font-family:'Outfit',sans-serif; font-size:24px !important; font-weight:700; color:var(--cyan); margin-bottom:8px;">sales@sinlexon.com.my</h3>
+            <p style="font-size:16px; color:#555;">+603-XXXX XXXX &nbsp;|&nbsp; Kuala Lumpur, Malaysia</p>
+            <div class="sep"></div>
+            <p style="font-size:15px; color:var(--text-muted);">Full interactive proposal &amp; calculator:</p>
+            <p style="font-family:'Outfit',sans-serif; font-size:20px; font-weight:700; color:var(--green);">chiamtatyin1-sys.github.io/sinlexon-ppt</p>
+        </div>
+        <div class="nav-hint" style="right:30px;"><i class="fas fa-chevron-down"></i> Press ↓ for Procurement Timeline</div>
     </section>
 
-    <!-- Slide 8B: Procurement Checklist -->
+    <!-- 8B: Procurement -->
     <section class="deep-dive">
         <div class="dive-label"><i class="fas fa-clipboard-check"></i> PROCUREMENT TIMELINE</div>
-        <div class="deck-label"><i class="fas fa-tasks"></i> 7-Day Onboarding Checklist</div>
-        <h2 class="deck-title">From Approval to <span class="hi">Live AI</span> in 7 Days</h2>
+        <h2 class="deck-title">Approval to <span class="hi">Live AI</span> in 7 Days</h2>
         <div class="grid-2">
             <div>
-                <div class="accent-line-cyan"></div>
                 <ul class="blist">
-                    <li><i class="fas fa-check-square c"></i> <strong>Day 1:</strong> Purchase order confirmed. Components sourced from local authorized distributors (VS Distributors, TM Technology, local ASUS resellers).</li>
-                    <li><i class="fas fa-check-square c"></i> <strong>Day 2–3:</strong> Hardware assembly. CPU mounting, RAM installation, GPU seating, PSU wiring, SSD installation. Tested with memtest86 (ECC verification) and GPU burn stress test.</li>
-                    <li><i class="fas fa-check-square c"></i> <strong>Day 4:</strong> Operating system install. Ubuntu 22.04 LTS Server, NVIDIA CUDA 12.x, Docker CE, and NVIDIA Container Toolkit configured.</li>
-                    <li><i class="fas fa-check-square c"></i> <strong>Day 5:</strong> AI Software stack deployment. Ollama + first AI model pull (Llama 3.1 / Qwen 2.5 / DeepSeek-R1). Open WebUI configured with LDAP/SSO if required.</li>
+                    <li><i class="fas fa-check-square c"></i> <strong>Day 1:</strong> PO confirmed. Components sourced from local distributors.</li>
+                    <li><i class="fas fa-check-square c"></i> <strong>Day 2–3:</strong> Hardware assembly. Memtest86 + GPU stress test.</li>
+                    <li><i class="fas fa-check-square c"></i> <strong>Day 4:</strong> Ubuntu Server + NVIDIA CUDA + Docker installed.</li>
+                    <li><i class="fas fa-check-square c"></i> <strong>Day 5:</strong> Ollama + Open WebUI deployed. First model live.</li>
                 </ul>
             </div>
             <div>
-                <div class="accent-line-green"></div>
                 <ul class="blist">
-                    <li><i class="fas fa-check-square g"></i> <strong>Day 6:</strong> Internal LAN access testing. All staff can access Open WebUI from office PCs/laptops via browser. No client-side software install needed.</li>
-                    <li><i class="fas fa-check-square g"></i> <strong>Day 7:</strong> Staff onboarding and hands-on training session. Best prompt engineering practices, how to upload documents for RAG, and model selection guide.</li>
-                    <li><i class="fas fa-check-square g"></i> <strong>Post-Launch:</strong> Annual MSP support contract begins. Remote monitoring, quarterly model updates, security patch schedule, and 8-hour response SLA active.</li>
-                    <li><i class="fas fa-star y"></i> <strong>Optional Next Step:</strong> Colocation at AIMS/TM One or Multi-Tenant SaaS configuration for B2B reselling revenue.</li>
+                    <li><i class="fas fa-check-square g"></i> <strong>Day 6:</strong> LAN access tested. All staff can access via browser.</li>
+                    <li><i class="fas fa-check-square g"></i> <strong>Day 7:</strong> Staff onboarding and prompt engineering training.</li>
+                    <li><i class="fas fa-check-square g"></i> <strong>Post-Launch:</strong> Annual MSP support begins. Remote monitoring + 8hr SLA.</li>
+                    <li><i class="fas fa-star y"></i> <strong>Next:</strong> Colocation or SaaS reselling setup when ready.</li>
                 </ul>
             </div>
         </div>
@@ -1033,22 +921,16 @@
         slideNumber: 'c/t',
         keyboard: true,
         touch: true,
-        loop: false,
-        rtl: false,
-        navigationMode: 'default',
-        shuffle: false,
         fragments: true,
-        embedded: false,
         help: true,
-        showNotes: false,
         autoSlide: 0,
         mouseWheel: false,
         previewLinks: false,
-        width: 1100,
-        height: 700,
-        margin: 0.04,
+        width: 1200,
+        height: 750,
+        margin: 0.06,
         minScale: 0.2,
-        maxScale: 2.0
+        maxScale: 2.5
     });
 </script>
 </body>

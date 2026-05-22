@@ -2,8 +2,8 @@ import { components } from '../data/hardware';
 
 export default function Expansion() {
   const gpuExpansion = [
-    { tier: 'Starter (1x 5090)', path: 'Add 2nd 5090 → Performance tier', cost: '+RM15,400' },
-    { tier: 'Performance (2x 5090)', path: 'Upgrade to RTX PRO 6000', cost: '+RM32,100 (sell 5090s)' },
+    { tier: 'Starter (1x 5090)', path: 'Add 2nd 5090 → Performance tier', cost: '+RM17,000' },
+    { tier: 'Performance (2x 5090)', path: 'Upgrade to RTX PRO 6000', cost: '+RM30,500 (sell 5090s)' },
     { tier: 'Enterprise (PRO 6000)', path: 'Add 2nd PRO 6000 via NVLink', cost: '+RM47,500' },
   ];
 
